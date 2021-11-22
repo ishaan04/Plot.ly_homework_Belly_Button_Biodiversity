@@ -78,7 +78,10 @@ function interactive_plot(sample) {
             title: "Top 10 OTUs - Bacteria Cultures",
             hovermode : "closest",
             xaxis: {title: "OTU ID"},
-            yaxis: {tickmode: "linear",
+            yaxis: {
+                tickmode: "linear",
+                tick0:0.5,
+                dtick: 20
             },
 
             margin: {
