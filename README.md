@@ -1,3 +1,7 @@
+ GIT PAGES PUBLISHED, OPEN URL:https://ishaan04.github.io/Plot.ly_homework_Belly_Button_Biodiversity/
+
+=========================================
+
 # Plot.ly Homework - Belly Button Biodiversity
 
 ![Bacteria by filterforge.com](Images/bacteria.jpg)
