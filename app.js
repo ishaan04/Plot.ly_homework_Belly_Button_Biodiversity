@@ -119,7 +119,7 @@ function interactive_plot(sample) {
 
 //setting up the intial data 
 
-function initial_data_display() {
+function init() {
 
     var select = d3.select("#selDataset");
     //console.log(select)
@@ -149,5 +149,5 @@ function optionChanged(samplenew) {
     demographics_data(samplenew);
 }
 
-initial_data_display();
+init();
 
