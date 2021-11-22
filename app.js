@@ -5,7 +5,7 @@
     //}); 
 
 //setup the function for demographics
-function demographics_data(sample) {
+function buildMetadata(sample) {
 
     //setup a code to read the json file and panel in html
     d3.json("samples.json").then((data) => {
@@ -32,7 +32,7 @@ function demographics_data(sample) {
 
 //setup the plots after the data is scanned
 
-function interactive_plot(sample) {
+function buildCharts(sample) {
     d3.json("samples.json").then((data) => {
         var samples = data.samples;
 
@@ -136,7 +136,7 @@ function init() {
         });    
 
         var ID_first = drop_down[0];
-        interactive_plot(ID_first),
+        buildCharts(ID_first),
         demographics_data(ID_first);
     });
 
@@ -145,8 +145,8 @@ function init() {
 //change event setup
 function optionChanged(samplenew) {
     //console.log(samplenew);
-    interactive_plot(samplenew);
-    demographics_data(samplenew);
+    buildCharts(samplenew);
+    buildMetadata(samplenew);
 }
 
 init();
