@@ -5,7 +5,7 @@
     //}); 
 
 //setup the function for demographics
-function buildMetadata(sample) {
+function demographics_data(sample) {
 
     //setup a code to read the json file and panel in html
     d3.json("samples.json").then((data) => {
@@ -32,7 +32,7 @@ function buildMetadata(sample) {
 
 //setup the plots after the data is scanned
 
-function buildCharts(sample) {
+function interactive_plot(sample) {
     d3.json("samples.json").then((data) => {
         var samples = data.samples;
 
@@ -57,7 +57,7 @@ function buildCharts(sample) {
         var top_otu_labels = otu_labels.slice(0,10).reverse();
         //console.log(top_otu_labels);
 
-        //var top_otu_values = sample_values.slice(0,10).reverse();
+        var top_otu_values = sample_values.slice(0,10).reverse();
         //console.log(top_otu_values);
 
         var data_trace_1 = {
@@ -84,16 +84,16 @@ function buildCharts(sample) {
             margin: {
                 l: 100,
                 r: 100,
-                t: 100,
-                b: 30
+                t: 90,
+                b: 20
             }
         };
 
         //creating the first bubble chart 
-        Plotly.newplot("bubble", data_1, data_layout_1);
+        Plotly.newPlot("bubble", data_1, data_layout_1);
 
         //bar chart 
-        data_trace_2 = {
+        var data_trace_2 = {
             x: sample_values,
             y: top_otu,
             type: "bar",
@@ -106,20 +106,22 @@ function buildCharts(sample) {
             text: top_otu_labels
         };
 
+        var data_2 = [data_trace_2];
+
         var data_layout_2 = {
             title: "OTU ID - Top 10 Bacteria Cultures",
             height: 500,
             width: 1100
         };
 
-        Plotly.newPlot("bubble",data_trace_2,data_layout_2);
+        Plotly.newPlot("bar",data_2,data_layout_2);
 
     });
 }
 
 //setting up the intial data 
 
-function init() {
+function initial_data_display() {
 
     var select = d3.select("#selDataset");
     //console.log(select)
@@ -136,7 +138,7 @@ function init() {
         });    
 
         var ID_first = drop_down[0];
-        buildCharts(ID_first),
+        interactive_plot(ID_first),
         demographics_data(ID_first);
     });
 
@@ -145,9 +147,9 @@ function init() {
 //change event setup
 function optionChanged(samplenew) {
     //console.log(samplenew);
-    buildCharts(samplenew);
-    buildMetadata(samplenew);
+    interactive_plot(samplenew);
+    demographics_data(samplenew);
 }
 
-init();
+initial_data_display();
 
